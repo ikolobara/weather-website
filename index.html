@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/index.css">
+    <title>Weather Website</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a>Home</a>
+                </li>
+                <li>
+                    <a href="pages/world.html">World</a>
+                </li>
+                <li>
+                    <a href="pages/about.html">About</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div>
+            <input type="search" id="searchInput" onclick="checkForEnter()" placeholder="Enter a city">
+            <button type="button" id="searchButton" onclick="getWeather()">Search</button>
+        </div>
+        <div class="weather-container">
+            <div class="city-temp-icon">
+                <div class="city-temp">
+                    <p id="city">City</p>
+                    <p id="temperature">Temperature</p>
+                </div>
+                <img id="weatherIcon" src="images/a01d.png" alt="Weather Icon">
+            </div>
+            <p id="description">Description</p>
+            <p id="feelsLike">Feels like:</p>
+            <p id="humidity">Humidity:</p>
+            <p id="wind">Wind:</p>
+        </div>
+    </main>
+
+    <script src="scripts/index.js"></script>
+</body>
+</html>
