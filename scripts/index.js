@@ -15,20 +15,35 @@ function getWeather(){
         .then(response => response.json())
         .then(data => {
             if (data && data.data && data.data.length > 0){
-                displayWeather(data.data[0])
+                displayWeather(data.data[0], city)
             }
         }
         )
 }
 
-function displayWeather(data){
-    document.getElementById("city").textContent = data.city_name
-    document.getElementById("temperature").textContent = `${data.temp}°C`;
-    document.getElementById("description").textContent = data.weather.description;
-    document.getElementById("feelsLike").textContent = `Feels like: ${data.app_temp}°C`;
-    document.getElementById("humidity").textContent = `Humidity: ${data.rh}%`;
-    document.getElementById("wind").textContent = `Wind: ${data.wind_spd} m/s`;
+function displayWeather(data, wantedCity){
+    const normalizeAndTrim = (str) => 
+        str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, '');
 
-    let weatherIcon = document.getElementById("weatherIcon");
-    weatherIcon.src = `images/${data.weather.icon}.png`;
+    if (normalizeAndTrim(wantedCity) === normalizeAndTrim(data.city_name)){
+        document.getElementById("city").textContent = data.city_name
+        document.getElementById("temperature").textContent = `${data.temp}°C`;
+        document.getElementById("description").textContent = data.weather.description;
+        document.getElementById("feelsLike").textContent = `Feels like: ${data.app_temp}°C`;
+        document.getElementById("humidity").textContent = `Humidity: ${data.rh}%`;
+        document.getElementById("wind").textContent = `Wind: ${data.wind_spd} m/s`;
+    
+        let weatherIcon = document.getElementById("weatherIcon");
+        weatherIcon.src = `images/${data.weather.icon}.png`;
+    } else {
+        document.getElementById("city").textContent = "Invalid city name"
+        document.getElementById("temperature").textContent = "N/A";
+        document.getElementById("description").textContent = "N/A";
+        document.getElementById("feelsLike").textContent = "N/A";
+        document.getElementById("humidity").textContent = "N/A";
+        document.getElementById("wind").textContent = "N/A";
+        let weatherIcon = document.getElementById("weatherIcon");
+        weatherIcon.src = `data:`;
+    }
+    
 }
