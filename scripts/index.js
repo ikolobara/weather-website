@@ -10,7 +10,7 @@ function checkForEnter(){
 
 function getWeather(){
     let city = document.getElementById("searchInput").value
-    let request = `https://api.weatherbit.io/v2.0/current?city=${city}&key=05b71b9ec1eb4bfba8f734447c4d727f`;
+    let request = `https://api.weatherbit.io/v2.0/current?city=${city}&key=03ce8ed6544e47f889515f7ccd5ef4a7`;
     const normalizeAndTrim = (str) => 
         str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, '');
 
